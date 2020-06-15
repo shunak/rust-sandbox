@@ -1,0 +1,1 @@
+/Users/syu/projects/communicator/target/debug/communicator: /Users/syu/projects/communicator/src/client.rs /Users/syu/projects/communicator/src/lib.rs /Users/syu/projects/communicator/src/main.rs /Users/syu/projects/communicator/src/network/mod.rs /Users/syu/projects/communicator/src/network/server.rs
