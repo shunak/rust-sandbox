@@ -1,6 +1,8 @@
 pub trait Summary {
+	fn summarize_author(&self) -> String;
+
 	fn summarize(&self) -> String{
-		String::from("(Read more...)")
+		String::from("(Read more from {}...)",self.summarize_author())
 	}
 }
 
@@ -29,7 +31,13 @@ impl Summary for Tweet {
 	fn summarize(&self)->String{
 		format!("{}: {}", self.username, self.content)
 	}
+	fn summarize_author(&self)->String{
+		format!("@{}",self.username)
+	}
 }
+
+
+
 
 
 //
