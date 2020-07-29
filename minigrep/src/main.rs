@@ -29,7 +29,7 @@ struct Config{
 }
 
 
-fn parse_config(args: &[String])->(&str, &str){
+fn parse_config(args: &[String])-> Config {
 	let query =  &args[1];
 	let filename = &args[2];
 	
