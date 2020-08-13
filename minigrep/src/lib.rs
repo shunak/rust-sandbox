@@ -1,24 +1,40 @@
-use std::env;
 use std::fs::File;
 use std::io::prelude::*;
+use std::error::Error;
 
-fn main() {
-	let args: Vec<String>=env::args().collect();//assign argument value by String Type Vector.
-	
-	let query = &args[1];
-	let filename = &args[2];
-	
-	println!("Searching for {}", query);
-	println!("In file {}", filename);
+
+pub fn run(config: Config) -> Result<(),Box<Error>> {//argument contains config instance
 
 	//file not found
-	let mut f = File::open(filename).expect("file not found");//filr hundler
+	let mut f = File::open(config.filename)?;//file handler
 	let mut contents = String::new();// string type file contents holder
-	f.read_to_string(&mut contents)
-	.expect("something went wrong reading the file");
+	f.read_to_string(&mut contents)?;
 
 	println!("With text:\n{}",contents);
 
+	Ok(())
+}
 
+
+
+pub struct Config{
+	pub query: String,
+	pub filename: String,
+}
+
+impl Config {
+
+	pub fn new(args: &[String])-> Result<Config, &'static str> {
+		if args.len() < 3{
+			return Err("not enough arguments");
+		}	
+
+		let query =  args[1].clone();
+		let filename = args[2].clone();
+	
+		Ok(Config { query, filename })
+	}
 
 }
+
+
