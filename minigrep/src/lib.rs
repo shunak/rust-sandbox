@@ -1,6 +1,7 @@
 use std::error::Error;
 use std::fs::File;
 use std::io::prelude::*;
+use std::env;
 
 pub fn run(config: Config) -> Result<(), Box<Error>> {
     //argument contains config instance
@@ -37,6 +38,8 @@ impl Config {
 
         let query = args[1].clone();
         let filename = args[2].clone();
+
+        let case_sensitive=env::var("CASE_INSENSITIVE"),is_err();
 
         Ok(Config { query, filename })
     }
